@@ -11,6 +11,15 @@ export const useMenu = () => {
     try {
       setLoading(true);
       
+      // Check if Supabase is properly configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        console.warn('Supabase not configured, using mock data');
+        setMenuItems([]);
+        setError('Supabase not configured. Please set up environment variables.');
+        setLoading(false);
+        return;
+      }
+      
       // Fetch menu items with their variations and add-ons
       const { data: items, error: itemsError } = await supabase
         .from('menu_items')

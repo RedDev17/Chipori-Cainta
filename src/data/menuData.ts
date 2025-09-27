@@ -30,6 +30,24 @@ export const menuData: MenuItem[] = [
     image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
+    id: 'karaage-bucket',
+    name: 'Karaage Bucket',
+    description: '500 grams of crunchy deep fried chicken bites served with Japanese mayonnaise',
+    basePrice: 518,
+    category: 'dim-sum',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: 'gyoza-popular',
+    name: 'Gyoza',
+    description: 'Gyoza of minced pork and a mixture of spices, hand wrapped in thinly rolled dough skin, pan-seared and served with sauce',
+    basePrice: 69,
+    category: 'dim-sum',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
     id: 'xiao-long-bao',
     name: 'Xiao Long Bao (Soup Dumplings)',
     description: 'Delicate dumplings filled with pork and savory broth',
@@ -66,6 +84,33 @@ export const menuData: MenuItem[] = [
     name: 'Beef Chow Fun',
     description: 'Stir-fried wide rice noodles with tender beef and bean sprouts',
     basePrice: 280,
+    category: 'noodles',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: 'miso-ramen',
+    name: 'Miso Ramen',
+    description: 'Noodle in a creamy, nutty and hearty miso soup, topped with chashu and 1/2 a slice of ajitama',
+    basePrice: 199,
+    category: 'noodles',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: 'tantanmen-ramen',
+    name: 'Tantanmen Ramen',
+    description: 'Noodle in a reddish, spicy chili, nutty and sesame soup, 1/2 ajitama with chashu',
+    basePrice: 259,
+    category: 'noodles',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: 'shoyu-ramen',
+    name: 'Shoyu Ramen',
+    description: 'Noodle and savory in a tangy, salty and savory soup, topped with chashu, nori and 1/2 ajitama',
+    basePrice: 199,
     category: 'noodles',
     popular: true,
     image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -201,13 +246,43 @@ export const menuData: MenuItem[] = [
     ],
     image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
+  
+  // Republic Combo Sets
+  {
+    id: 'set-a',
+    name: 'Set A',
+    description: '2 Miso Ramen + 4 pieces Gyoza - Perfect for sharing',
+    basePrice: 448,
+    category: 'republic-combo',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: 'set-b',
+    name: 'Set B',
+    description: '3 Tantanmen Ramen + 6 pieces Gyoza - Great for groups',
+    basePrice: 877,
+    category: 'republic-combo',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: 'set-c',
+    name: 'Set C',
+    description: '1 Spicy Miso + 1 Curry Ramen + 1 Shoyu Ramen + 6 pieces Gyoza - Ultimate variety',
+    basePrice: 747,
+    category: 'republic-combo',
+    popular: true,
+    image: 'https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
 ];
 
 export const categories = [
   { id: 'dim-sum', name: 'Dim Sum', icon: '🥟' },
   { id: 'noodles', name: 'Noodles', icon: '🍜' },
   { id: 'rice-dishes', name: 'Rice Dishes', icon: '🍚' },
-  { id: 'beverages', name: 'Beverages', icon: '🍵' }
+  { id: 'beverages', name: 'Beverages', icon: '🍵' },
+  { id: 'republic-combo', name: 'Republic Combo', icon: '🍱' }
 ];
 
 export const addOnCategories = [

@@ -99,7 +99,7 @@ Please confirm this order to proceed. Thank you for choosing ClickEats! 🥟
     `.trim();
 
     const encodedMessage = encodeURIComponent(orderDetails);
-    const messengerUrl = `https://m.me/61579693577478?text=${encodedMessage}`;
+    const messengerUrl = `https://m.me/103814432316258?text=${encodedMessage}`;
     
     window.open(messengerUrl, '_blank');
     

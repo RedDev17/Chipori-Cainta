@@ -21,7 +21,7 @@ export const useCart = () => {
   const addToCart = useCallback((item: MenuItem, quantity: number = 1, variation?: Variation, addOns?: AddOn[]) => {
     const totalPrice = calculateItemPrice(item, variation, addOns);
     
-    // Group add-ons by name and sum their quantities
+    // Group add-ons by ID and sum their quantities
     const groupedAddOns = addOns?.reduce((groups, addOn) => {
       const existing = groups.find(g => g.id === addOn.id);
       if (existing) {
@@ -33,10 +33,11 @@ export const useCart = () => {
     }, [] as (AddOn & { quantity: number })[]);
     
     setCartItems(prev => {
+      // Create a unique identifier for this cart item configuration
+      const configId = `${item.id}-${variation?.id || 'default'}-${addOns?.map(a => a.id).sort().join(',') || 'none'}`;
+      
       const existingItem = prev.find(cartItem => 
-        cartItem.id === item.id && 
-        cartItem.selectedVariation?.id === variation?.id &&
-        JSON.stringify(cartItem.selectedAddOns?.map(a => `${a.id}-${a.quantity || 1}`).sort()) === JSON.stringify(groupedAddOns?.map(a => `${a.id}-${a.quantity}`).sort())
+        cartItem.id === configId
       );
       
       if (existingItem) {
@@ -46,10 +47,9 @@ export const useCart = () => {
             : cartItem
         );
       } else {
-        const uniqueId = `${item.id}-${variation?.id || 'default'}-${addOns?.map(a => a.id).join(',') || 'none'}`;
         return [...prev, { 
           ...item,
-          id: uniqueId,
+          id: configId,
           quantity,
           selectedVariation: variation,
           selectedAddOns: groupedAddOns || [],
@@ -57,6 +57,10 @@ export const useCart = () => {
         }];
       }
     });
+  }, []);
+
+  const removeFromCart = useCallback((id: string) => {
+    setCartItems(prev => prev.filter(item => item.id !== id));
   }, []);
 
   const updateQuantity = useCallback((id: string, quantity: number) => {
@@ -70,11 +74,7 @@ export const useCart = () => {
         item.id === id ? { ...item, quantity } : item
       )
     );
-  }, []);
-
-  const removeFromCart = useCallback((id: string) => {
-    setCartItems(prev => prev.filter(item => item.id !== id));
-  }, []);
+  }, [removeFromCart]);
 
   const clearCart = useCallback(() => {
     setCartItems([]);

@@ -2,14 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ramen Yard Custom Styles */
-/* Minimal helpers for ramen palette when needed outside tailwind tokens */
-.bg-ramen-cream { background-color: #FFF3E0; }
-.bg-ramen-beige { background-color: #F7E7CE; }
-.text-ramen-red { color: #D7263D; }
-.text-ramen-dark { color: #0B0A0A; }
-.border-ramen-sesame { border-color: #D1C7B7; }
-.ring-ramen-gold { --tw-ring-color: #E0A106; }
+/* Chipori Cainta Custom Styles */
+/* Minimal helpers for chipori palette when needed outside tailwind tokens */
+.bg-chipori-cream { background-color: #FFF8F0; }
+.bg-chipori-white { background-color: #FFFFFF; }
+.bg-chipori-lightGray { background-color: #F5F5F5; }
+.text-chipori-red { color: #8B0000; }
+.text-chipori-dark { color: #2C2C2C; }
+.border-chipori-light { border-color: #E0E0E0; }
+.ring-chipori-gold { --tw-ring-color: #DAA520; }
 
 /* Hide scrollbar for mobile nav */
 .scrollbar-hide {
@@ -19,6 +20,50 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Removed snap scrolling for better free scrolling */
+
+/* Enhanced scroll behavior */
+.overflow-x-auto {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Force horizontal scrolling for category navigation */
+.category-scroll {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Ensure the container doesn't wrap and forces horizontal scroll */
+  min-width: max-content;
+  /* Enhanced scroll behavior for better UX */
+  scroll-padding-left: 1rem;
+  scroll-padding-right: 1rem;
+  /* Improve touch scrolling on mobile */
+  touch-action: pan-x;
+  /* Better momentum scrolling */
+  overscroll-behavior-x: contain;
+  /* Prevent vertical scrolling interference */
+  overscroll-behavior-y: none;
+}
+
+.category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure categories don't wrap and maintain proper spacing */
+.category-button {
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+/* Ensure buttons have proper cursor */
+.category-button {
+  cursor: pointer;
 }
 
 /* Image loading optimization */
@@ -35,4 +80,58 @@ img {
   top: -9999px;
   width: 1px;
   height: 1px;
+}
+
+/* Enhanced menu animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-pulse-gentle {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Menu card hover effects */
+.menu-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }

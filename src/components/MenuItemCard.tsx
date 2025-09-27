@@ -93,9 +93,9 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
   return (
     <>
-      <div className={`bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group animate-scale-in border border-gray-100 ${!item.available ? 'opacity-60' : ''}`}>
+      <div className={`bg-gradient-to-br from-chipori-white to-chipori-cream rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group animate-scale-in border border-chipori-light/50 backdrop-blur-sm ${!item.available ? 'opacity-60' : 'hover:scale-105'}`}>
         {/* Image Container with Badges */}
-        <div className="relative h-48 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="relative h-56 bg-gradient-to-br from-chipori-lightGray via-chipori-cream to-chipori-white overflow-hidden">
           {item.image ? (
             <img
               src={item.image}
@@ -110,49 +110,42 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             />
           ) : null}
           <div className={`absolute inset-0 flex items-center justify-center ${item.image ? 'hidden' : ''}`}>
-            <div className="text-6xl opacity-20 text-gray-400">☕</div>
+            <div className="text-6xl opacity-20 text-chipori-charcoal">🍽️</div>
           </div>
           
-          {/* Badges */}
-          <div className="absolute top-3 left-3 flex flex-col gap-2">
-            {item.isOnDiscount && item.discountPrice && (
-              <div className="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-pulse">
-                SALE
-              </div>
-            )}
+          {/* Popular Badge */}
             {item.popular && (
-              <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+            <div className="absolute top-3 left-3 bg-gradient-to-r from-chipori-gold to-yellow-600 text-chipori-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                 ⭐ POPULAR
               </div>
             )}
-          </div>
           
           {!item.available && (
-            <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+            <div className="absolute top-3 left-3 bg-chipori-red text-chipori-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
               UNAVAILABLE
             </div>
           )}
           
-          {/* Discount Percentage Badge */}
-          {item.isOnDiscount && item.discountPrice && (
-            <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm text-red-600 text-xs font-bold px-2 py-1 rounded-full shadow-lg">
-              {Math.round(((item.basePrice - item.discountPrice) / item.basePrice) * 100)}% OFF
+          {/* Circular Price Badge - Like in reference */}
+          <div className="absolute top-3 right-3 w-16 h-16 bg-chipori-red rounded-full flex items-center justify-center shadow-xl border-4 border-chipori-white">
+            <span className="text-chipori-white font-ramen-bold text-lg">
+              ₱{Math.round(item.effectivePrice || item.basePrice)}
+            </span>
             </div>
-          )}
         </div>
         
         {/* Content */}
-        <div className="p-5">
+        <div className="p-6 bg-gradient-to-br from-chipori-white/80 to-chipori-cream/80 backdrop-blur-sm">
           <div className="flex items-start justify-between mb-3">
-            <h4 className="text-lg font-semibold text-gray-900 leading-tight flex-1 pr-2">{item.name}</h4>
+            <h4 className="text-xl font-ramen-bold text-chipori-charcoal leading-tight flex-1 pr-2 uppercase tracking-wide">{item.name}</h4>
             {item.variations && item.variations.length > 0 && (
-              <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full whitespace-nowrap">
+              <div className="text-xs text-chipori-charcoal bg-chipori-lightGray px-2 py-1 rounded-full whitespace-nowrap">
                 {item.variations.length} sizes
               </div>
             )}
           </div>
           
-          <p className={`text-sm mb-4 leading-relaxed ${!item.available ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-sm mb-4 leading-relaxed ${!item.available ? 'text-chipori-charcoal/40' : 'text-chipori-charcoal/70'}`}>
             {!item.available ? 'Currently Unavailable' : item.description}
           </p>
           
@@ -162,25 +155,25 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
               {item.isOnDiscount && item.discountPrice ? (
                 <div className="space-y-1">
                   <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold text-red-600">
+                    <span className="text-2xl font-bold text-chipori-red">
                       ₱{item.discountPrice.toFixed(2)}
                     </span>
-                    <span className="text-sm text-gray-500 line-through">
+                    <span className="text-sm text-chipori-charcoal/50 line-through">
                       ₱{item.basePrice.toFixed(2)}
                     </span>
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-chipori-charcoal/50">
                     Save ₱{(item.basePrice - item.discountPrice).toFixed(2)}
                   </div>
                 </div>
               ) : (
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold text-chipori-charcoal">
                   ₱{item.basePrice.toFixed(2)}
                 </div>
               )}
               
               {item.variations && item.variations.length > 0 && (
-                <div className="text-xs text-gray-500 mt-1">
+                <div className="text-xs text-chipori-charcoal/50 mt-1">
                   Starting price
                 </div>
               )}
@@ -191,31 +184,31 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
               {!item.available ? (
                 <button
                   disabled
-                  className="bg-gray-200 text-gray-500 px-4 py-2.5 rounded-xl cursor-not-allowed font-medium text-sm"
+                  className="bg-chipori-lightGray text-chipori-charcoal/50 px-4 py-2.5 rounded-xl cursor-not-allowed font-medium text-sm"
                 >
                   Unavailable
                 </button>
               ) : quantity === 0 ? (
                 <button
                   onClick={handleAddToCart}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2.5 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-200 transform hover:scale-105 font-medium text-sm shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-chipori-red to-chipori-darkRed text-chipori-white px-6 py-2.5 rounded-xl hover:from-chipori-darkRed hover:to-chipori-red transition-all duration-200 transform hover:scale-105 font-medium text-sm shadow-lg hover:shadow-xl"
                 >
                   {item.variations?.length || item.addOns?.length ? 'Customize' : 'Add to Cart'}
                 </button>
               ) : (
-                <div className="flex items-center space-x-2 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl p-1 border border-yellow-200">
+                <div className="flex items-center space-x-2 bg-gradient-to-r from-chipori-cream to-chipori-lightGray rounded-xl p-1 border border-chipori-light">
                   <button
                     onClick={handleDecrement}
-                    className="p-2 hover:bg-yellow-200 rounded-lg transition-colors duration-200 hover:scale-110"
+                    className="p-2 hover:bg-chipori-lightGray rounded-lg transition-colors duration-200 hover:scale-110"
                   >
-                    <Minus className="h-4 w-4 text-gray-700" />
+                    <Minus className="h-4 w-4 text-chipori-charcoal" />
                   </button>
-                  <span className="font-bold text-gray-900 min-w-[28px] text-center text-sm">{quantity}</span>
+                  <span className="font-bold text-chipori-charcoal min-w-[28px] text-center text-sm">{quantity}</span>
                   <button
                     onClick={handleIncrement}
-                    className="p-2 hover:bg-yellow-200 rounded-lg transition-colors duration-200 hover:scale-110"
+                    className="p-2 hover:bg-chipori-lightGray rounded-lg transition-colors duration-200 hover:scale-110"
                   >
-                    <Plus className="h-4 w-4 text-gray-700" />
+                    <Plus className="h-4 w-4 text-chipori-charcoal" />
                   </button>
                 </div>
               )}
@@ -224,7 +217,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
           {/* Add-ons indicator */}
           {item.addOns && item.addOns.length > 0 && (
-            <div className="flex items-center space-x-1 text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded-lg">
+            <div className="flex items-center space-x-1 text-xs text-chipori-charcoal/50 bg-chipori-lightGray px-2 py-1 rounded-lg">
               <span>+</span>
               <span>{item.addOns.length} add-on{item.addOns.length > 1 ? 's' : ''} available</span>
             </div>
