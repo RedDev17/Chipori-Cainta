@@ -93,103 +93,104 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
   return (
     <>
-      <div className={`bg-gradient-to-br from-chipori-white to-chipori-cream rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group animate-scale-in border border-chipori-light/50 backdrop-blur-sm ${!item.available ? 'opacity-60' : 'hover:scale-105'}`}>
-        {/* Image Container with Badges */}
-        <div className="relative h-56 bg-gradient-to-br from-chipori-lightGray via-chipori-cream to-chipori-white overflow-hidden">
-          {item.image ? (
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-              decoding="async"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
-              }}
-            />
-          ) : null}
-          <div className={`absolute inset-0 flex items-center justify-center ${item.image ? 'hidden' : ''}`}>
-            <div className="text-6xl opacity-20 text-chipori-charcoal">🍽️</div>
-          </div>
-          
-          {/* Popular Badge */}
+      <div className={`bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-200 ${!item.available ? 'opacity-60' : 'hover:scale-105'}`}>
+        {/* Red Header Section - Like in reference */}
+        <div className="bg-chipori-headerRed px-4 py-3">
+          <h4 className="text-lg font-chipori-bold text-white uppercase tracking-wide text-center">
+            {item.name}
+          </h4>
+        </div>
+        
+        {/* White Content Area - Like in reference */}
+        <div className="p-4 bg-chipori-contentWhite">
+          {/* Image Container */}
+          <div className="relative h-48 bg-gray-100 rounded-lg overflow-hidden mb-4">
+            {item.image ? (
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+            ) : null}
+            <div className={`absolute inset-0 flex items-center justify-center ${item.image ? 'hidden' : ''}`}>
+              <div className="text-4xl opacity-20 text-gray-400">🍳</div>
+            </div>
+            
+            {/* Popular Badge */}
             {item.popular && (
-            <div className="absolute top-3 left-3 bg-gradient-to-r from-chipori-gold to-yellow-600 text-chipori-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+              <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
                 ⭐ POPULAR
               </div>
             )}
-          
-          {!item.available && (
-            <div className="absolute top-3 left-3 bg-chipori-red text-chipori-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-              UNAVAILABLE
-            </div>
-          )}
-          
-          {/* Circular Price Badge - Like in reference */}
-          <div className="absolute top-3 right-3 w-16 h-16 bg-chipori-red rounded-full flex items-center justify-center shadow-xl border-4 border-chipori-white">
-            <span className="text-chipori-white font-ramen-bold text-lg">
-              ₱{Math.round(item.effectivePrice || item.basePrice)}
-            </span>
-          </div>
-        </div>
-        
-        {/* Content */}
-        <div className="p-6 bg-gradient-to-br from-chipori-white/80 to-chipori-cream/80 backdrop-blur-sm">
-          <div className="flex items-start justify-between mb-3">
-            <h4 className="text-xl font-ramen-bold text-chipori-charcoal leading-tight flex-1 pr-2 uppercase tracking-wide">{item.name}</h4>
-            {item.variations && item.variations.length > 0 && (
-              <div className="text-xs text-chipori-charcoal bg-chipori-lightGray px-2 py-1 rounded-full whitespace-nowrap">
-                {item.variations.length} sizes
+            
+            {!item.available && (
+              <div className="absolute top-2 left-2 bg-gray-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                UNAVAILABLE
               </div>
             )}
+            
+            {/* Price Badge - Top Right */}
+            <div className="absolute top-2 right-2 bg-chipori-headerRed text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg">
+              ₱{Math.round(item.effectivePrice || item.basePrice)}
+            </div>
           </div>
           
-          <p className={`text-sm mb-4 leading-relaxed ${!item.available ? 'text-chipori-charcoal/40' : 'text-chipori-charcoal/70'}`}>
+          {/* Description */}
+          <p className={`text-sm mb-4 leading-relaxed text-black ${!item.available ? 'text-gray-400' : 'text-gray-700'}`}>
             {!item.available ? 'Currently Unavailable' : item.description}
           </p>
           
-          {/* Action Buttons */}
-          <div className="flex items-center justify-between">
-            <div className="flex-1"></div>
-            <div className="flex-shrink-0">
-              {!item.available ? (
-                <button
-                  disabled
-                  className="bg-chipori-lightGray text-chipori-charcoal/50 px-4 py-2.5 rounded-xl cursor-not-allowed font-medium text-sm"
-                >
-                  Unavailable
-                </button>
-              ) : quantity === 0 ? (
-                <button
-                  onClick={handleAddToCart}
-                  className="bg-gradient-to-r from-chipori-red to-chipori-darkRed text-chipori-white px-6 py-2.5 rounded-xl hover:from-chipori-darkRed hover:to-chipori-red transition-all duration-200 transform hover:scale-105 font-medium text-sm shadow-lg hover:shadow-xl"
-                >
-                  {item.variations?.length || item.addOns?.length ? 'Customize' : 'Add to Cart'}
-                </button>
-              ) : (
-                <div className="flex items-center space-x-2 bg-gradient-to-r from-chipori-cream to-chipori-lightGray rounded-xl p-1 border border-chipori-light">
-                  <button
-                    onClick={handleDecrement}
-                    className="p-2 hover:bg-chipori-lightGray rounded-lg transition-colors duration-200 hover:scale-110"
-                  >
-                    <Minus className="h-4 w-4 text-chipori-charcoal" />
-                  </button>
-                  <span className="font-bold text-chipori-charcoal min-w-[28px] text-center text-sm">{quantity}</span>
-                  <button
-                    onClick={handleIncrement}
-                    className="p-2 hover:bg-chipori-lightGray rounded-lg transition-colors duration-200 hover:scale-110"
-                  >
-                    <Plus className="h-4 w-4 text-chipori-charcoal" />
-                  </button>
-                </div>
-              )}
+          {/* Variations indicator */}
+          {item.variations && item.variations.length > 0 && (
+            <div className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mb-3 text-center">
+              {item.variations.length} sizes available
             </div>
+          )}
+            
+          {/* Action Buttons */}
+          <div className="flex items-center justify-center">
+            {!item.available ? (
+              <button
+                disabled
+                className="bg-gray-300 text-gray-500 px-6 py-2 rounded-lg cursor-not-allowed font-medium text-sm"
+              >
+                Unavailable
+              </button>
+            ) : quantity === 0 ? (
+              <button
+                onClick={handleAddToCart}
+                className="bg-chipori-headerRed text-white px-6 py-2 rounded-lg hover:bg-chipori-darkRed transition-all duration-200 transform hover:scale-105 font-medium text-sm shadow-lg hover:shadow-xl"
+              >
+                {item.variations?.length || item.addOns?.length ? 'Customize' : 'Add to Cart'}
+              </button>
+            ) : (
+              <div className="flex items-center space-x-2 bg-gray-100 rounded-lg p-1 border border-gray-200">
+                <button
+                  onClick={handleDecrement}
+                  className="p-2 hover:bg-gray-200 rounded-lg transition-colors duration-200 hover:scale-110"
+                >
+                  <Minus className="h-4 w-4 text-black" />
+                </button>
+                <span className="font-bold text-black min-w-[28px] text-center text-sm">{quantity}</span>
+                <button
+                  onClick={handleIncrement}
+                  className="p-2 hover:bg-gray-200 rounded-lg transition-colors duration-200 hover:scale-110"
+                >
+                  <Plus className="h-4 w-4 text-black" />
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Add-ons indicator */}
           {item.addOns && item.addOns.length > 0 && (
-            <div className="flex items-center space-x-1 text-xs text-chipori-charcoal/50 bg-chipori-lightGray px-2 py-1 rounded-lg">
+            <div className="flex items-center justify-center space-x-1 text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-lg mt-2">
               <span>+</span>
               <span>{item.addOns.length} add-on{item.addOns.length > 1 ? 's' : ''} available</span>
             </div>

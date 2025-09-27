@@ -35,39 +35,23 @@ const Menu: React.FC<MenuProps> = ({ menuItems, filteredMenuItems, addToCart, ca
 
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50">
+    <main className="min-h-screen bg-white relative">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Hero Section */}
-        <div className="text-center mb-16 relative animate-fade-in-up">
-          <div className="absolute inset-0 bg-gradient-to-r from-red-600/5 to-red-800/5 rounded-3xl"></div>
-          <div className="relative z-10 py-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-600 to-red-800 rounded-full mb-6 shadow-2xl">
-              <span className="text-3xl">🍽️</span>
-            </div>
-            <h2 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 uppercase tracking-wider drop-shadow-lg">
-              Our Menu
+        {/* Hero Section - Chipori Style */}
+        <div className="text-center mb-16 relative">
+          <div className="bg-chipori-headerRed rounded-lg p-8 mb-8">
+            <h2 className="text-4xl md:text-6xl font-chipori-bold text-white mb-4 uppercase tracking-wider">
+              CHIPORI SA SARAP
             </h2>
-            <div className="w-32 h-2 bg-gradient-to-r from-red-600 to-red-800 mx-auto mb-8 rounded-full"></div>
-            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
-              Discover our selection of authentic Filipino dishes, traditional recipes, and modern interpretations, 
-              all prepared with fresh ingredients and time-honored techniques.
-            </p>
+            <div className="w-24 h-1 bg-white mx-auto mb-4 rounded-full"></div>
+            <p className="text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed font-chipori-text">
+          Discover our selection of authentic Filipino dishes, traditional recipes, and modern interpretations, 
+          all prepared with fresh ingredients and time-honored techniques.
+        </p>
           </div>
-        </div>
+      </div>
 
-      {/* Featured "Must Try" Section - Always show */}
-      <FeaturedSection title="Must Try">
-        {menuItems
-          .filter(item => item.popular)
-          .slice(0, 6)
-          .map((item) => (
-            <FeaturedMenuItem
-              key={item.id}
-              item={item}
-              onAddToCart={addToCart}
-            />
-          ))}
-      </FeaturedSection>
 
 
       {categories.map((category) => {
@@ -77,19 +61,18 @@ const Menu: React.FC<MenuProps> = ({ menuItems, filteredMenuItems, addToCart, ca
         
         return (
           <section key={category.id} id={category.id} className="mb-20">
-            {/* Category Header */}
-            <div className="relative mb-12 animate-slide-in-left">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-red-800/10 rounded-2xl"></div>
-              <div className="relative z-10 flex items-center justify-center py-8 px-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center shadow-xl">
-                    <span className="text-2xl">{category.icon}</span>
+            {/* Category Header - Chipori Style */}
+            <div className="mb-12">
+              <div className="bg-chipori-headerRed rounded-lg p-6">
+                <div className="flex items-center justify-center space-x-4">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-2xl text-chipori-headerRed">{category.icon}</span>
                   </div>
                   <div>
-                    <h3 className="text-4xl md:text-5xl font-bold text-gray-900 uppercase tracking-wider drop-shadow-sm">
+                    <h3 className="text-3xl md:text-4xl font-chipori-bold text-white uppercase tracking-wider">
                       {category.name}
                     </h3>
-                    <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-red-800 mt-2 rounded-full"></div>
+                    <div className="w-16 h-1 bg-white mt-2 rounded-full"></div>
                   </div>
                 </div>
               </div>
@@ -131,7 +114,7 @@ const Menu: React.FC<MenuProps> = ({ menuItems, filteredMenuItems, addToCart, ca
         );
       })}
       </div>
-    </main>
+      </main>
   );
 };
 

@@ -23,27 +23,27 @@ const SubNav: React.FC<SubNavProps> = ({ selectedCategory, onCategoryClick }) =>
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+      scrollContainerRef.current.scrollLeft -= 200;
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+      scrollContainerRef.current.scrollLeft += 200;
     }
   };
 
   // Handle mouse wheel horizontal scrolling
   const handleWheel = (e: WheelEvent) => {
     if (scrollContainerRef.current) {
+      // Prevent page from scrolling vertically when scrolling categories horizontally
       e.preventDefault();
       e.stopPropagation();
       
       // Support both vertical wheel (deltaY) and horizontal wheel (deltaX)
       const scrollAmount = (e.deltaY || e.deltaX) * 0.8;
       scrollContainerRef.current.scrollBy({ 
-        left: scrollAmount, 
-        behavior: 'smooth' 
+        left: scrollAmount
       });
     }
   };
@@ -61,42 +61,35 @@ const SubNav: React.FC<SubNavProps> = ({ selectedCategory, onCategoryClick }) =>
     }
   }, [categories]);
 
-  // Auto-scroll to selected category
-  useEffect(() => {
-    if (scrollContainerRef.current && selectedCategory) {
-      const selectedButton = scrollContainerRef.current.querySelector(`[data-category="${selectedCategory}"]`) as HTMLElement;
-      if (selectedButton) {
-        selectedButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-    }
-  }, [selectedCategory]);
+  // Removed auto-scroll behavior - let users scroll manually with mouse wheel
 
   return (
-    <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm hidden md:block">
+    <div className="sticky top-16 z-40 bg-white shadow-sm hidden md:block">
       <div className="relative w-full overflow-hidden">
         {/* Left scroll button */}
         {canScrollLeft && (
           <button
             onClick={scrollLeft}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 border border-gray-200 transition-all duration-200"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-chipori-headerRed hover:bg-chipori-darkRed shadow-lg rounded-full p-2 text-white transition-all duration-200"
           >
-            <ChevronLeft className="h-4 w-4 text-gray-600" />
+            <ChevronLeft className="h-4 w-4" />
           </button>
         )}
-        
+
         {/* Right scroll button */}
         {canScrollRight && (
           <button
             onClick={scrollRight}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 border border-gray-200 transition-all duration-200"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-chipori-headerRed hover:bg-chipori-darkRed shadow-lg rounded-full p-2 text-white transition-all duration-200"
           >
-            <ChevronRight className="h-4 w-4 text-gray-600" />
+            <ChevronRight className="h-4 w-4" />
           </button>
         )}
-        
-        <div 
+
+        <div
           ref={scrollContainerRef}
-          className="flex items-center space-x-3 category-scroll py-4 px-4 overflow-x-auto scrollbar-hide"
+          className="flex items-center space-x-3 py-4 px-4 overflow-x-auto"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {loading ? (
             <div className="flex space-x-4">
@@ -109,11 +102,11 @@ const SubNav: React.FC<SubNavProps> = ({ selectedCategory, onCategoryClick }) =>
               <button
                 onClick={() => onCategoryClick('all')}
                 data-category="all"
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 category-button ${
-                      selectedCategory === 'all'
-                        ? 'bg-red-600 text-white border-red-600 shadow-lg'
-                        : 'bg-white text-gray-900 border-gray-200 hover:border-red-600 hover:shadow-md'
-                    }`}
+                className={`px-4 py-2 rounded-lg text-sm font-chipori-bold transition-all duration-200 border-2 category-button ${
+                  selectedCategory === 'all'
+                    ? 'bg-chipori-headerRed text-white border-chipori-headerRed shadow-lg'
+                    : 'bg-white text-black border-gray-300 hover:border-chipori-headerRed hover:shadow-md'
+                }`}
               >
                 All
               </button>
@@ -122,11 +115,11 @@ const SubNav: React.FC<SubNavProps> = ({ selectedCategory, onCategoryClick }) =>
                   key={c.id}
                   onClick={() => onCategoryClick(c.id)}
                   data-category={c.id}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 flex items-center space-x-2 category-button ${
-                        selectedCategory === c.id
-                          ? 'bg-red-600 text-white border-red-600 shadow-lg'
-                          : 'bg-white text-gray-900 border-gray-200 hover:border-red-600 hover:shadow-md'
-                      }`}
+                  className={`px-4 py-2 rounded-lg text-sm font-chipori-bold transition-all duration-200 border-2 flex items-center space-x-2 category-button ${
+                    selectedCategory === c.id
+                      ? 'bg-chipori-headerRed text-white border-chipori-headerRed shadow-lg'
+                      : 'bg-white text-black border-gray-300 hover:border-chipori-headerRed hover:shadow-md'
+                  }`}
                 >
                   <span>{c.icon}</span>
                   <span>{c.name}</span>

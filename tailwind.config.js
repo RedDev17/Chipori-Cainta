@@ -5,22 +5,25 @@ export default {
     extend: {
       colors: {
         chipori: {
-          red: '#8B0000',        // Darker red like in the image
-          darkRed: '#6B0000',    // Even darker red for backgrounds
+          red: '#DC2626',        // Bright red like in the reference
+          darkRed: '#B91C1C',    // Darker red for hover states
           white: '#FFFFFF',      // Pure white
           cream: '#FFF8F0',      // Off-white cream
           gold: '#DAA520',       // Gold accents
-          charcoal: '#2C2C2C',   // Dark text
+          charcoal: '#000000',   // Pure black text like reference
           lightGray: '#F5F5F5',  // Light gray backgrounds
           light: '#E0E0E0',      // Light borders
-          border: '#E0E0E0'      // Light borders
+          border: '#E0E0E0',     // Light borders
+          headerRed: '#DC2626',  // Bright red for headers
+          contentWhite: '#FFFFFF' // White for content areas
         }
       },
       fontFamily: {
         'pretendard': ['Pretendard', 'system-ui', 'sans-serif'],
         'noto-kr': ['Noto Serif KR', 'serif'],
-        'ramen-title': ['Montserrat', 'Open Sans', 'system-ui', 'sans-serif'],
-        'ramen-bold': ['Montserrat Bold', 'Open Sans ExtraBold', 'system-ui', 'sans-serif']
+        'chipori-title': ['Inter', 'system-ui', 'sans-serif'], // Bold rounded font like reference
+        'chipori-bold': ['Inter', 'system-ui', 'sans-serif'], // Bold version
+        'chipori-text': ['Inter', 'system-ui', 'sans-serif']  // Regular text
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

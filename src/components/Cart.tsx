@@ -23,21 +23,23 @@ const Cart: React.FC<CartProps> = ({
 }) => {
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <div className="text-center py-20">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-red-600 rounded-full mb-8">
-              <span className="text-4xl">🍽️</span>
+            <div className="bg-chipori-headerRed rounded-lg p-8 mb-8">
+              <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full mb-8 overflow-hidden">
+                <span className="text-4xl text-chipori-headerRed">🛒</span>
+              </div>
+              <h2 className="text-4xl font-chipori-bold text-white mb-4 uppercase tracking-wider">Your Cart is Empty</h2>
+              <div className="w-24 h-1 bg-white mx-auto mb-8 rounded-full"></div>
+              <p className="text-lg text-white mb-8 max-w-md mx-auto font-chipori-text">Add some delicious Filipino dishes to get started!</p>
+              <button
+                onClick={onContinueShopping}
+                className="bg-white text-chipori-headerRed px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-chipori-bold text-lg"
+              >
+                Browse Menu
+              </button>
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Your Cart is Empty</h2>
-            <div className="w-24 h-1 bg-red-600 mx-auto mb-8 rounded-full"></div>
-            <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">Add some delicious Filipino dishes to get started!</p>
-            <button
-              onClick={onContinueShopping}
-              className="bg-red-600 text-white px-8 py-4 rounded-2xl hover:bg-red-700 transition-all duration-300 font-medium text-lg"
-            >
-              Browse Menu
-            </button>
           </div>
         </div>
       </div>
@@ -45,32 +47,34 @@ const Cart: React.FC<CartProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto px-4 py-16">
-        {/* Header Section */}
+        {/* Header Section - Chipori Style */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-red-600 rounded-full mb-6">
-            <span className="text-3xl">🛒</span>
+          <div className="bg-chipori-headerRed rounded-lg p-8 mb-8">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-6 overflow-hidden">
+              <span className="text-3xl text-chipori-headerRed">🛒</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-chipori-bold text-white mb-4 uppercase tracking-wider">Your Cart</h1>
+            <div className="w-32 h-2 bg-white mx-auto mb-4 rounded-full"></div>
+            <p className="text-lg text-white max-w-2xl mx-auto font-chipori-text">
+              Review your delicious Filipino dishes and proceed to checkout
+            </p>
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">Your Cart</h1>
-          <div className="w-32 h-2 bg-red-600 mx-auto mb-8 rounded-full"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Review your delicious Filipino dishes and proceed to checkout
-          </p>
         </div>
 
         {/* Action Buttons */}
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={onContinueShopping}
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 bg-white px-4 py-2 rounded-xl hover:bg-gray-50 shadow-sm"
+            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 bg-white px-4 py-2 rounded-lg hover:bg-gray-50 shadow-sm border border-gray-200"
           >
             <ArrowLeft className="h-5 w-5" />
-            <span>Continue Shopping</span>
+            <span className="font-chipori-text">Continue Shopping</span>
           </button>
           <button
             onClick={clearCart}
-            className="text-red-600 hover:text-red-700 transition-colors duration-200 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl"
+            className="bg-chipori-headerRed text-white hover:bg-chipori-darkRed transition-colors duration-200 px-4 py-2 rounded-lg font-chipori-bold"
           >
             Clear All
           </button>
@@ -133,14 +137,14 @@ const Cart: React.FC<CartProps> = ({
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-        <div className="flex items-center justify-between text-3xl font-bold text-gray-900 mb-8">
+        <div className="flex items-center justify-between text-3xl font-chipori-bold text-black mb-8">
           <span>Total:</span>
-          <span className="text-red-600">₱{getTotalPrice().toFixed(2)}</span>
+          <span className="text-black">₱{getTotalPrice().toFixed(2)}</span>
         </div>
         
         <button
           onClick={onCheckout}
-          className="w-full bg-red-600 text-white py-6 rounded-xl hover:bg-red-700 transition-all duration-300 font-bold text-xl"
+          className="w-full bg-chipori-headerRed text-white py-6 rounded-lg hover:bg-chipori-darkRed transition-all duration-300 font-chipori-bold text-xl"
         >
           Proceed to Checkout
         </button>

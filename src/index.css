@@ -26,28 +26,17 @@
 
 /* Enhanced scroll behavior */
 .overflow-x-auto {
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
 
 /* Force horizontal scrolling for category navigation */
 .category-scroll {
   overflow-x: auto;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
   /* Ensure the container doesn't wrap and forces horizontal scroll */
   min-width: max-content;
-  /* Enhanced scroll behavior for better UX */
-  scroll-padding-left: 1rem;
-  scroll-padding-right: 1rem;
-  /* Improve touch scrolling on mobile */
-  touch-action: pan-x;
-  /* Better momentum scrolling */
-  overscroll-behavior-x: contain;
-  /* Prevent vertical scrolling interference */
-  overscroll-behavior-y: none;
 }
 
 .category-scroll::-webkit-scrollbar {
@@ -134,4 +123,10 @@ img {
 .menu-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Vertical text for Chipori branding */
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
