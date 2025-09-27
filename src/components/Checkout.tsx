@@ -23,7 +23,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalPrice, onBack }) =>
   const [partySize, setPartySize] = useState(1);
   const [dineInTime, setDineInTime] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('gcash');
-  const [referenceNumber, setReferenceNumber] = useState('');
+  const [referenceNumber] = useState('');
   const [notes, setNotes] = useState('');
 
   React.useEffect(() => {
@@ -480,7 +480,7 @@ Please confirm this order to proceed. Thank you for choosing ClickEats! 🥟
                       ).join(', ')}
                     </p>
                   )}
-                  <p className="text-sm text-gray-600">₱{item.totalPrice} x {item.quantity}</p>
+                  <p className="text-sm text-gray-600">₱{item.totalPrice} each</p>
                 </div>
                 <span className="font-semibold text-black">₱{item.totalPrice * item.quantity}</span>
               </div>

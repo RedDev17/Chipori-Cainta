@@ -96,7 +96,7 @@ const Cart: React.FC<CartProps> = ({
                     ).join(', ')}
                   </p>
                 )}
-                <p className="text-lg font-semibold text-gray-900 mt-2">₱{item.totalPrice} each</p>
+                <p className="text-sm text-gray-600 mt-2">₱{item.totalPrice} each</p>
               </div>
               
               <div className="flex items-center space-x-6 ml-4">

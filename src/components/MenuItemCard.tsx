@@ -131,7 +131,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             <span className="text-chipori-white font-ramen-bold text-lg">
               ₱{Math.round(item.effectivePrice || item.basePrice)}
             </span>
-            </div>
+          </div>
         </div>
         
         {/* Content */}
@@ -149,37 +149,9 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             {!item.available ? 'Currently Unavailable' : item.description}
           </p>
           
-          {/* Pricing Section */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex-1">
-              {item.isOnDiscount && item.discountPrice ? (
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold text-chipori-red">
-                      ₱{item.discountPrice.toFixed(2)}
-                    </span>
-                    <span className="text-sm text-chipori-charcoal/50 line-through">
-                      ₱{item.basePrice.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="text-xs text-chipori-charcoal/50">
-                    Save ₱{(item.basePrice - item.discountPrice).toFixed(2)}
-                  </div>
-                </div>
-              ) : (
-                <div className="text-2xl font-bold text-chipori-charcoal">
-                  ₱{item.basePrice.toFixed(2)}
-                </div>
-              )}
-              
-              {item.variations && item.variations.length > 0 && (
-                <div className="text-xs text-chipori-charcoal/50 mt-1">
-                  Starting price
-                </div>
-              )}
-            </div>
-            
-            {/* Action Buttons */}
+          {/* Action Buttons */}
+          <div className="flex items-center justify-between">
+            <div className="flex-1"></div>
             <div className="flex-shrink-0">
               {!item.available ? (
                 <button
@@ -357,7 +329,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
                 className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-200 font-semibold flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 <ShoppingCart className="h-5 w-5" />
-                <span>Add to Cart - ₱{calculatePrice().toFixed(2)}</span>
+                <span>Add to Cart</span>
               </button>
             </div>
           </div>
